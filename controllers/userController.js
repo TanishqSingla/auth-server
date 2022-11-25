@@ -1,12 +1,13 @@
 const User = require("../models/User");
+const bcrypt = require("bcrypt");
 
 module.exports.signup = async (req, res) => {
-	const { name, email, password, phoneNumber } = req.body;
-	const user = await User.create({ name, email, password, phoneNumber });
+	const { name, email, password } = req.body;
+
+	const user = await User.create({ name, email, password });
 	res.status(201).json({
 		name: user.name,
 		email: user.email,
-		phoneNumber: user.phoneNumber,
 	});
 };
 
