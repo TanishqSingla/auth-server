@@ -7,7 +7,7 @@ module.exports.signup = async (req, res) => {
 	const user = User.findOne({ email });
 
 	if(user) {
-		res.status(400).json({error: "email already exists"});
+		res.status(400).json({error: "Email already exists"});
 		return;
 	}
 	User.create({ name, email, password }).then((data) => console.log(data));
@@ -31,3 +31,7 @@ module.exports.login = async (req, res) => {
 		res.status(404).json({ error: "Email doesn't exist" });
 	}
 };
+
+module.exports.logout = async (req, res) => {
+	res.status(301);		
+}
